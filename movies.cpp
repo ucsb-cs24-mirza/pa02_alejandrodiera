@@ -25,7 +25,7 @@ void BST::clear(Node *n) {
 }
 
 // Insert value in tree, returns false if duplicate
-void BST::insert(int value) {
+bool BST::insert(int value) {
     if(!root) {
 	root = new Node(value);
 	return true;

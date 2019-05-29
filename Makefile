@@ -2,10 +2,10 @@
 
 CXX_FLAG = --std=c++11 -g
 
-all: movies tests 
+all: runMovies  
 
-movies: movies.o utility.o 
-	g++ $(CXX_FLAG) -o movies movies.o utility.o
+runMovies: movies.o utility.o 
+	g++ $(CXX_FLAG) -o runMovies movies.o utility.o 
 
 tests: tests.o movies.o 
 	g++ $(CXX_FLAG) -o tests tests.o movies.o
@@ -19,5 +19,7 @@ tests.o: tests.cpp tests.h
 movies.o: movies.cpp movies.h
 	g++ -c $(CXX_FLAG) movies.cpp
 
+main.o: main.cpp 
+	g++ -c $(CXX_FLAG) main.cpp
 clean:
 	rm *.o

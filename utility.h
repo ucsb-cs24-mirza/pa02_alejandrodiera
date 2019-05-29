@@ -4,29 +4,11 @@
 
 #ifdef UTILITY_H
 #define UTILITY_H
+
 #include <iostream>
 #include "movies.h"
-
 using namespace std;
 
-int main() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return 0;
-}
 
 
 
