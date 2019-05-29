@@ -4,33 +4,34 @@
 
 #ifdef MOVIES_H
 #define MOVIES_H
-#include <iostream>
 
+#include <iostream>
 using namespace std;
 
-class BST {
+class movieBST {
 
 public:
 
-    BST();
-    ~BST();
-    bool insert(int value);
-    bool contain(int value);
-    bool remove(int value);
+    BST(); // constructor
+    ~BST(); // destructor
+    bool insert(int value); // insert value; return false if duplicate
+    bool contain(int value); // true if value is in tree
+    bool remove(int value); // deletes the Node containing the given value
 
 private:
 
     struct Node {
       int info;
       Node *left, *right, *parent;
+      // useful constructor:
       Node(int v=0) : info(v), left(0), right(0) parent(0) {}
     };
+
     Node *root;
-    Node* getNodeFor(int value, Node* n)const;
-    void clear(Node *n);
-    bool insert(int value, Node *n);
+    Node* getNodeFor(int value, Node *n) const;
+    void clear(Node *n); // for destructor
+    bool insert(int value, Node *n); 
 
 };
-
 
 #endif

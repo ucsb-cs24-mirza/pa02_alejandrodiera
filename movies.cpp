@@ -5,7 +5,6 @@
 #include <iostream>
 #include "movies.h"
 #include "utility.h"
-
 using namespace std;
 
 // Constructor that sets up empty tree
@@ -58,7 +57,7 @@ bool BST::insert(int value, Node *n) {
     }
 }
 
-BST::Node* BST::getNodeFor(int avlue, Node *n) const {
+BST::Node* BST::getNodeFor(int value, Node *n) const {
     if(n) {
 	if(value == n->info)
 	    return n;
@@ -71,7 +70,7 @@ BST::Node* BST::getNodeFor(int avlue, Node *n) const {
 	return NULL;
 }
 
-bool BST::constrains(int value)const {
+bool BST::contains(int value) const {
     Node *n = getNodeFor(value,root);
     if(n)
 	return true;
@@ -79,18 +78,3 @@ bool BST::constrains(int value)const {
 	return false;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return 0;
-}
