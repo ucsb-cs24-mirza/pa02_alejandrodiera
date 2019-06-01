@@ -37,7 +37,7 @@ int main(int argc, char** argv){
 
   // Create an objects of the BST class you defined 
   // to contain the name and rating in the input file
-
+  BST BST1,BST2;
   // Read each file and store the name and rating
   while (getline (movieFile, line) && parseLine(line, movieName, movieRating)){
     // Use std::string movieName and double movieRating

@@ -5,6 +5,7 @@
 #include <iostream>
 #include "movies.h"
 #include "utility.h"
+#include <string>
 using namespace std;
 
 // Constructor that sets up empty tree
@@ -25,7 +26,7 @@ void BST::clear(Node *n) {
 }
 
 // Insert value in tree, returns false if duplicate
-bool BST::insert(int value) {
+bool BST::insert(string value) {
     if(!root) {
 	root = new Node(value);
 	return true;
@@ -34,7 +35,7 @@ bool BST::insert(int value) {
 }
 
 // recursive helper for insert (assumes n is never 0)
-bool BST::insert(int value, Node *n) {
+bool BST::insert(string value, Node *n) {
     if(value==n->info)
 	return false;
     if(value < n->info) {
@@ -57,7 +58,7 @@ bool BST::insert(int value, Node *n) {
     }
 }
 
-BST::Node* BST::getNodeFor(int value, Node *n) const {
+BST::Node* BST::getNodeFor(string value, Node *n) const {
     if(n) {
 	if(value == n->info)
 	    return n;
@@ -70,7 +71,7 @@ BST::Node* BST::getNodeFor(int value, Node *n) const {
 	return NULL;
 }
 
-bool BST::contains(int value) const {
+bool BST::contains(string value) const {
     Node *n = getNodeFor(value,root);
     if(n)
 	return true;

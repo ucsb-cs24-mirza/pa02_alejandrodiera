@@ -6,6 +6,7 @@
 #define MOVIES_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class BST {
@@ -14,23 +15,23 @@ public:
 
     BST(); // constructor
     ~BST(); // destructor
-    bool insert(int value); // insert value; return false if duplicate
-    bool contains(int value) const; // true if value is in tree
-    bool remove(int value); // deletes the Node containing the given value
+    bool insert(string value); // insert value; return false if duplicate
+    bool contains(string value) const; // true if value is in tree
+    bool remove(string value); // deletes the Node containing the given value
 
 private:
 
     struct Node {
-      int info;
+      string info;
       Node *left, *right, *parent;
       // useful constructor:
-      Node(int v=0) : info(v), left(0), right(0), parent(0) {}
+      Node(string v="") : info(v), left(0), right(0), parent(0) {}
     };
 
     Node *root;
-    Node* getNodeFor(int value, Node *n) const;
+    Node* getNodeFor(string value, Node *n) const;
     void clear(Node *n); // for destructor
-    bool insert(int value, Node *n); 
+    bool insert(string value, Node *n); 
 
 };
 
