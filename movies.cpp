@@ -26,53 +26,53 @@ void BST::clear(Node *n) {
 }
 
 // Insert value in tree, returns false if duplicate
-bool BST::insert(string value) {
+bool BST::insert(string name, double rating) {
     if(!root) {
-	root = new Node(value);
+	root = new Node(name, rating);
 	return true;
     }
-    return insert(value, root);
+    return insert(name, rating, root);
 }
 
 // recursive helper for insert (assumes n is never 0)
-bool BST::insert(string value, Node *n) {
-    if(value==n->info)
+bool BST::insert(string name, double rating, Node *n) {
+    if(name==n->movie_name || rating==n->movie_rating)
 	return false;
-    if(value < n->info) {
+    if(rating < n->movie_rating) {
 	if(n->left)
-	    return insert(value,n->left);
+	    return insert(name, rating, n->left);
 	else {
-	    n->left = new Node(value);
+	    n->left = new Node(name, rating);
 	    n->left->parent = n;
 	    return true;
 	}
     }
     else {
 	if(n->right)
-	    return insert(value, n->right);
+	    return insert(name, rating, n->right);
 	else {
-	    n->right = new Node(value);
+	    n->right = new Node(name, rating);
 	    n->right->parent = n;
 	    return true;
 	}
     }
 }
 
-BST::Node* BST::getNodeFor(string value, Node *n) const {
+BST::Node* BST::getNodeFor(string name, double rating, Node *n) const {
     if(n) {
-	if(value == n->info)
+	if(name == n->movie_name)
 	    return n;
-	else if(value > n->info)
-	    return getNodeFor(value,n->right);
+	else if(rating > n->movie_rating)
+	    return getNodeFor(name, rating, n->right);
 	else
-	    return getNodeFor(value,n->left);
+	    return getNodeFor(name, rating, n->left);
     }
     else
 	return NULL;
 }
 
-bool BST::contains(string value) const {
-    Node *n = getNodeFor(value,root);
+bool BST::contains(string name, double rating) const {
+    Node *n = getNodeFor(name, rating, root);
     if(n)
 	return true;
     else 
