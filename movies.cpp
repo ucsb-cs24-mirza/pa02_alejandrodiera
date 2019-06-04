@@ -36,9 +36,8 @@ bool BST::insert(string name, double rating) {
 
 // recursive helper for insert (assumes n is never 0)
 bool BST::insert(string name, double rating, Node *n) {
-    if(name==n->movie_name || rating==n->movie_rating)
-	return false;
-    if(rating < n->movie_rating) {
+    string mn = n->movie_name;
+    if(mn.compare(name) > 0) {
 	if(n->left)
 	    return insert(name, rating, n->left);
 	else {
@@ -47,7 +46,7 @@ bool BST::insert(string name, double rating, Node *n) {
 	    return true;
 	}
     }
-    else {
+    else if(mn.compare(name) < 0) {
 	if(n->right)
 	    return insert(name, rating, n->right);
 	else {
@@ -56,34 +55,48 @@ bool BST::insert(string name, double rating, Node *n) {
 	    return true;
 	}
     }
+    else
+    	return false;
 }
 
-BST::Node* BST::getNodeFor(string name, double rating, Node *n) const {
+// Prints pre-order traversal
+void BST::printPreOrder() const {
+    printPreOrder(root);
+}
+
+// Recursive helper for printPreOrder
+void BST::printPreOrder(Node *n) const {
+    if(n) {
+        cout << n->movie_name << ", " << n->movie_rating << endl;
+        printPreOrder(n->left);
+        printPreOrder(n->right);
+    }
+}
+
+BST::Node* BST::getNodeFor(string name, Node *n) const {
     if(n) {
 	if(name == n->movie_name)
 	    return n;
-	else if(rating > n->movie_rating)
-	    return getNodeFor(name, rating, n->right);
+	else if(name.compare(n->movie_name) > 0)
+	    return getNodeFor(name, n->right);
 	else
-	    return getNodeFor(name, rating, n->left);
+	    return getNodeFor(name, n->left);
     }
     else
 	return NULL;
 }
 
-void BST::movieSearch(string name, double rating) const {
-    Node *n = getNodeFor(name, rating, root);
-    if(n)
-	return true;
-    else 
-	return false;
+BST::Node* BST::getNodePrefix(string prefix, Node *n) const {
+    if(n) {
+	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0)
+	    return n;
+	else if(prefix.compare(n->movie_name.substr(0,prefix.size())) > 0)
+	    return getNodePrefix(prefix, n->right);
+	else
+	    return getNodePrefix(prefix, n->left);
+    }
+    else
+	return NULL;
 }
 
-void BST::ratingSearch(string prefix, double rating) const {
-    Node *n = getNodeFor(name, rating, root);
-    if(n)
-	return true;
-    else 
-	return false;
-}
-//std::string compare
+
