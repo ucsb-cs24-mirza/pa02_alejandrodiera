@@ -67,7 +67,7 @@ void BST::printPreOrder() const {
 // Recursive helper for printPreOrder
 void BST::printPreOrder(Node *n) const {
     if(n) {
-        cout << n->movie_name << ", " << n->movie_rating << endl;
+        cout<<n->movie_name<<", "<< n->movie_rating<<", "<<depth(n)<<endl;
         printPreOrder(n->left);
         printPreOrder(n->right);
     }
@@ -99,4 +99,13 @@ BST::Node* BST::getNodePrefix(string prefix, Node *n) const {
 	return NULL;
 }
 
+int BST::depth(Node *n) const {
+    int i = 0;
+    Node *temp = n;
+    while(temp->parent) {
+	i++;
+	temp = temp->parent;
+    }
+    return i;
+}
 

@@ -17,7 +17,7 @@ public:
     ~BST(); //destructor
     bool insert(string name, double rating); //insert value return false if duplicate
     void printPreOrder() const; //prints pre-order traversal
-
+ 
 private:
 
     struct Node {
@@ -35,6 +35,7 @@ private:
     bool insert(string name, double rating, Node *n); //helper
     void printPreOrder(Node *n) const; //helper
     vector<Node> getNodesFor(string prefix); //vector that contains movies w/ prefix
+    int depth(Node *n) const; 
 
 };
 
