@@ -71,7 +71,7 @@ BST::Node* BST::getNodeFor(string name, double rating, Node *n) const {
 	return NULL;
 }
 
-bool BST::contains(string name, double rating) const {
+void BST::movieSearch(string name, double rating) const {
     Node *n = getNodeFor(name, rating, root);
     if(n)
 	return true;
@@ -79,3 +79,11 @@ bool BST::contains(string name, double rating) const {
 	return false;
 }
 
+void BST::ratingSearch(string prefix, double rating) const {
+    Node *n = getNodeFor(name, rating, root);
+    if(n)
+	return true;
+    else 
+	return false;
+}
+//std::string compare

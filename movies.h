@@ -16,9 +16,8 @@ public:
     BST(); // constructor
     ~BST(); // destructor
     bool insert(string name, double rating);//insert value return false if duplicate
-    bool contains(string name, double rating) const;//true if value is in tree
-    bool remove(string name);//deletes the Node containing the given value
-
+    void movieSearch(string name) const;//true if value is in tree
+    void ratingSearch(string prefix, double rating) const;//finds movie w/ highest rating starting w/ a particular prefix
 private:
 
     struct Node {
