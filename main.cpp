@@ -49,7 +49,10 @@ int main(int argc, char** argv){
   movieFile.close();
   
   Movie.printPreOrder();
-
+  cout << endl;
+  string prefix = argv[3];
+  Movie.bestMovie(prefix);
+  cout << endl;
   return 0;
 }
 

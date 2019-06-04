@@ -6,6 +6,7 @@
 #include "movies.h"
 #include "utility.h"
 #include <string>
+#include <vector>
 using namespace std;
 
 // Constructor that sets up empty tree
@@ -62,7 +63,7 @@ bool BST::insert(string name, double rating, Node *n) {
 // Prints pre-order traversal
 void BST::printPreOrder() const {
     printPreOrder(root);
-    cout << endl;
+
 }
 
 // Recursive helper for printPreOrder
@@ -74,9 +75,10 @@ void BST::printPreOrder(Node *n) const {
     }
 }
 
+// Recursive function that finds Node with specific name
 BST::Node* BST::getNodeFor(string name, Node *n) const {
     if(n) {
-	if(name == n->movie_name)
+	if(name == n->movie_name) 
 	    return n;
 	else if(name.compare(n->movie_name) > 0)
 	    return getNodeFor(name, n->right);
@@ -87,10 +89,13 @@ BST::Node* BST::getNodeFor(string name, Node *n) const {
 	return NULL;
 }
 
+// Recursive function that finds Node with specific prefix and returns them
 BST::Node* BST::getNodePrefix(string prefix, Node *n) const {
     if(n) {
-	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0)
-	    return n;
+	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0) {
+	  cout << "HEY" << endl;
+	  return n;
+	}
 	else if(prefix.compare(n->movie_name.substr(0,prefix.size())) > 0)
 	    return getNodePrefix(prefix, n->right);
 	else
@@ -100,6 +105,7 @@ BST::Node* BST::getNodePrefix(string prefix, Node *n) const {
 	return NULL;
 }
 
+// Finds the depth of a node.
 int BST::depth(Node *n) const {
     int i = 0;
     Node *temp = n;
@@ -108,5 +114,24 @@ int BST::depth(Node *n) const {
 	temp = temp->parent;
     }
     return i;
+}
+
+// Vector that contains all Nodes that start with a specific prefix
+vector<BST::Node*> BST::getNodesFor(string prefix) const {
+    vector<Node*> vecList;
+    vecList.push_back(getNodePrefix(prefix,root));
+    return vecList;
+}
+
+void BST::bestMovie(string prefix) const {
+    vector<Node*> n = getNodesFor(prefix);
+    Node *temp, *best;
+    for(int i=0;i<n.size()-1;i++) {
+	temp = n[i];
+	if(temp->movie_rating > best->movie_rating)
+	    best = temp;
+    }
+    cout<<"Best movie is "<<best->movie_name<<" with rating "<<best->movie_rating;
+    return;
 }
 

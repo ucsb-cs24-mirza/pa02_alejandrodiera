@@ -17,7 +17,7 @@ public:
     ~BST(); //destructor
     bool insert(string name, double rating); //insert value return false if duplicate
     void printPreOrder() const; //prints pre-order traversal
- 
+    void bestMovie(string prefix) const; //prints out best movie w/ specific prefix 
 private:
 
     struct Node {
@@ -30,13 +30,13 @@ private:
 
     Node *root; 
     Node* getNodeFor(string name, Node *n) const; //searches for movie
-    Node* getNodePrefix(string prefix, Node*n) const; //searches w/ respect to prefix
+    Node* getNodePrefix(string prefix, Node *n) const; //searches w/ respect to prefix
+    vector<Node*> getNodesFor(string prefix) const; //vector that contains movies w/ prefix
     void clear(Node *n); //helper
     bool insert(string name, double rating, Node *n); //helper
     void printPreOrder(Node *n) const; //helper
-    vector<Node> getNodesFor(string prefix); //vector that contains movies w/ prefix
     int depth(Node *n) const; 
-
+   
 };
 
 #endif
