@@ -126,8 +126,9 @@ void BST::bestMovie(string prefix) const {
     vector<Node*> b;
     getNodesFor(prefix,b);
     Node *temp, *best=0;
-    if(b[0])
-        best = b[0];
+    if(b.empty())
+	return;
+    best = b[0];
     for(int i=0;i<b.size();i++) {
 	temp = b[i];
 	if(temp->movie_rating > best->movie_rating)
