@@ -62,6 +62,7 @@ bool BST::insert(string name, double rating, Node *n) {
 // Prints pre-order traversal
 void BST::printPreOrder() const {
     printPreOrder(root);
+    cout << endl;
 }
 
 // Recursive helper for printPreOrder
