@@ -101,36 +101,35 @@ int BST::depth(Node *n) const {
 }
 
 // Vector that contains all Nodes that start with a specific prefix
-vector<BST::Node*> BST::getNodesFor(string prefix) const {
-    vector<Node*> vecList;
-    getNodesFor(prefix,vecList,root);
-    return vecList;
+void BST::getNodesFor(string prefix, vector<Node*> &v) const {
+    getNodesFor(prefix,v,root);
 }
 
 // Helper function
-vector<BST::Node*> BST::getNodesFor(string prefix, vector<Node*> v, Node* n) const {
+void BST::getNodesFor(string prefix, vector<Node*> &v, Node* n) const {
+    int len = prefix.size();
     if(n) {
-	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0) { 
+	if(prefix.compare(n->movie_name.substr(0,len)) == 0) { 
 	    v.push_back(n);
-	    if(prefix.compare(n->right->movie_name.substr(0,prefix.size())) > 0)
-		return getNodesFor(prefix, v, n->right);
-	    else
-		return getNodesFor(prefix, v, n->left);
+	    getNodesFor(prefix, v, n->right);
+	    return getNodesFor(prefix, v, n->left);
 	}
-	if(prefix.compare(n->movie_name.substr(0,prefix.size())) > 0)
+	if(prefix.compare(n->movie_name.substr(0,len)) > 0)
 	    return getNodesFor(prefix, v, n->right);
 	else
 	    return getNodesFor(prefix, v, n->left);
     }
-    else
-	return v;
+    return;
 }
 
 void BST::bestMovie(string prefix) const {
-    vector<Node*> n = getNodesFor(prefix);
-    Node *temp, *best;
-    for(int i=0;i<n.size();i++) {
-	temp = n[i];
+    vector<Node*> b;
+    getNodesFor(prefix,b);
+    Node *temp, *best=0;
+    if(b[0])
+        best = b[0];
+    for(int i=0;i<b.size();i++) {
+	temp = b[i];
 	if(temp->movie_rating > best->movie_rating)
 	    best = temp;
     }

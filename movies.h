@@ -30,8 +30,8 @@ private:
 
     Node *root; 
     Node* getNodeFor(string name, Node *n) const; //searches for movie
-    vector<Node*> getNodesFor(string prefix) const; //vector that contains movies w/ prefix
-    vector<Node*> getNodesFor(string prefix, vector<Node*> v, Node *n) const; //helper
+    void getNodesFor(string prefix, vector<Node*> &v) const; //vec movies w/ prefix
+    void getNodesFor(string prefix, vector<Node*> &v, Node *n) const; //helper
     void clear(Node *n); //helper
     bool insert(string name, double rating, Node *n); //helper
     void printPreOrder(Node *n) const; //helper
