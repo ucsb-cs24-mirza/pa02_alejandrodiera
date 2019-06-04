@@ -89,22 +89,6 @@ BST::Node* BST::getNodeFor(string name, Node *n) const {
 	return NULL;
 }
 
-// Recursive function that finds Node with specific prefix and returns them
-BST::Node* BST::getNodePrefix(string prefix, Node *n) const {
-    if(n) {
-	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0) {
-	  cout << "HEY" << endl;
-	  return n;
-	}
-	else if(prefix.compare(n->movie_name.substr(0,prefix.size())) > 0)
-	    return getNodePrefix(prefix, n->right);
-	else
-	    return getNodePrefix(prefix, n->left);
-    }
-    else
-	return NULL;
-}
-
 // Finds the depth of a node.
 int BST::depth(Node *n) const {
     int i = 0;
@@ -119,14 +103,33 @@ int BST::depth(Node *n) const {
 // Vector that contains all Nodes that start with a specific prefix
 vector<BST::Node*> BST::getNodesFor(string prefix) const {
     vector<Node*> vecList;
-    vecList.push_back(getNodePrefix(prefix,root));
+    getNodesFor(prefix,vecList,root);
     return vecList;
+}
+
+// Helper function
+vector<BST::Node*> BST::getNodesFor(string prefix, vector<Node*> v, Node* n) const {
+    if(n) {
+	if(prefix.compare(n->movie_name.substr(0,prefix.size())) == 0) { 
+	    v.push_back(n);
+	    if(prefix.compare(n->right->movie_name.substr(0,prefix.size())) > 0)
+		return getNodesFor(prefix, v, n->right);
+	    else
+		return getNodesFor(prefix, v, n->left);
+	}
+	if(prefix.compare(n->movie_name.substr(0,prefix.size())) > 0)
+	    return getNodesFor(prefix, v, n->right);
+	else
+	    return getNodesFor(prefix, v, n->left);
+    }
+    else
+	return v;
 }
 
 void BST::bestMovie(string prefix) const {
     vector<Node*> n = getNodesFor(prefix);
     Node *temp, *best;
-    for(int i=0;i<n.size()-1;i++) {
+    for(int i=0;i<n.size();i++) {
 	temp = n[i];
 	if(temp->movie_rating > best->movie_rating)
 	    best = temp;

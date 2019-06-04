@@ -25,13 +25,13 @@ private:
       double movie_rating;
       Node *left,*right, *parent;
       // useful constructor:
-      Node(string v="",double r=0.0) : movie_rating(r), movie_name(v), left(0), right(0), parent(0) {}
+      Node(string v="",double r=0.0):movie_rating(r),movie_name(v),left(0),right(0),parent(0) {}
     };
 
     Node *root; 
     Node* getNodeFor(string name, Node *n) const; //searches for movie
-    Node* getNodePrefix(string prefix, Node *n) const; //searches w/ respect to prefix
     vector<Node*> getNodesFor(string prefix) const; //vector that contains movies w/ prefix
+    vector<Node*> getNodesFor(string prefix, vector<Node*> v, Node *n) const; //helper
     void clear(Node *n); //helper
     bool insert(string name, double rating, Node *n); //helper
     void printPreOrder(Node *n) const; //helper
