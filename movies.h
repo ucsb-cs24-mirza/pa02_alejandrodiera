@@ -16,6 +16,7 @@ public:
     bool insert(string name, double rating); //insert value return false if duplicate
     void printPreOrder() const; //prints pre-order traversal
     void bestMovie(string prefix) const; //prints out best movie w/ specific prefix 
+    void search(string movie, int W) const;
 private:
     struct Node {
       string movie_name;

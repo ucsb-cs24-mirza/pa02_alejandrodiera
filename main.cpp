@@ -47,11 +47,16 @@ int main(int argc, char** argv){
     //cout << movieName << " has rating " << movieRating << endl;
   }
   movieFile.close();
-  
-  Movie.printPreOrder();
-  cout << endl;
-  string prefix = argv[3];
-  Movie.bestMovie(prefix);
+  if(flag == true) { 
+      Movie.printPreOrder();
+      cout << endl;
+      string prefix = argv[3];
+      Movie.bestMovie(prefix);
+      cout << endl;
+  }
+  if(flag == false)
+	Movie.search("jaws",atoi(argv[3]));
+
   return 0;
 }
 

@@ -7,6 +7,7 @@
 #include "utility.h"
 #include <string>
 #include <vector>
+#include <ctime>
 using namespace std;
 
 // Constructor that sets up empty tree
@@ -73,6 +74,21 @@ void BST::printPreOrder(Node *n) const {
         printPreOrder(n->left);
         printPreOrder(n->right);
     }
+}
+
+// Search Function
+void BST::search(string movie, int W) const {
+    clock_t t;
+    double time;
+    t = clock();
+    Node *temp;
+    for(int i=0;i<=W;i++) {
+        temp = getNodeFor(movie,root);
+        temp = 0;
+    }
+    time = (clock() - t);
+    cout << "Time for search: " << time/1000 << endl;
+    cout << "Average time: " << time/(1000*W) << endl;
 }
 
 // Recursive function that finds Node with specific name
