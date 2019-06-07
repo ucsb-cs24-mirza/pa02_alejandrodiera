@@ -52,7 +52,6 @@ int main(int argc, char** argv){
       cout << endl;
       string prefix = argv[3];
       Movie.bestMovie(prefix);
-      cout << endl;
   }
   if(flag == false)
 	Movie.search("jaws",atoi(argv[3]));
