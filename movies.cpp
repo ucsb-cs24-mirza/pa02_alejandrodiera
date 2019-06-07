@@ -80,15 +80,19 @@ void BST::printPreOrder(Node *n) const {
 void BST::search(string movie, int W) const {
     clock_t t;
     double time;
-    t = clock();
     Node *temp;
+    t = clock();
     for(int i=0;i<=W;i++) {
         temp = getNodeFor(movie,root);
-        temp = 0;
+	temp = 0;
+	time = (clock()-t);
+	cout << "Time for search: " << time/1000 << endl;
+	time = 0;
+	t = clock();
     }
-    time = (clock() - t);
-    cout << "Time for search: " << time/1000 << endl;
-    cout << "Average time: " << time/(1000*W) << endl;
+    //time = (clock() - t);
+    //cout << "Time for search: " << time << endl;
+    //cout << "Average time: " << ((time/W)/1000) << endl;
 }
 
 // Recursive function that finds Node with specific name
