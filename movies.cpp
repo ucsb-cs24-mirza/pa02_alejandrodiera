@@ -86,7 +86,7 @@ void BST::search(string movie, int W) const {
         temp = getNodeFor(movie,root);
 	temp = 0;
 	time = (clock()-t);
-	cout << "Time for search: " << time/1000 << endl;
+	cout << "Time for search: " << time/CLOCKS_PER_SEC << endl;
 	time = 0;
 	t = clock();
     }
