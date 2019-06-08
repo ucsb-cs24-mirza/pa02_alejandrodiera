@@ -31,6 +31,7 @@ void BST::clear(Node *n) {
 bool BST::insert(string name, double rating) {
     if(!root) {
 	root = new Node(name, rating);
+	//cout << "0 Nodes Visited";
 	return true;
     }
     return insert(name, rating, root);

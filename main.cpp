@@ -44,7 +44,9 @@ int main(int argc, char** argv){
     // Use std::string movieName and double movieRating
     // to construct your Movie objects
     Movie.insert(movieName,movieRating);
-    //cout << movieName << " has rating " << movieRating << endl;
+    //int n = -1;
+    //n++;
+    //cout << "N = " << n << endl;
   }
   movieFile.close();
   if(flag == true) { 
